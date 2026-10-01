@@ -23,15 +23,14 @@ async function boot(){
     try {
       const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
       cloudClient = createClient(cloud.url, cloud.key);
+      cloudClient.auth.onAuthStateChange((event, session) => {
+        if (event === 'PASSWORD_RECOVERY' && session?.user) {
+          setTimeout(() => { connectAccount(session.user); openPasswordDialog(); }, 0);
+        }
+        if (event === 'SIGNED_OUT') { cloudUser = null; render(); }
+      });
       const {data:{session}} = await cloudClient.auth.getSession();
       if (session) await connectAccount(session.user);
-      cloudClient.auth.onAuthStateChange((event, session) => {
-        if (session?.user) {
-          connectAccount(session.user);
-          if (event === 'PASSWORD_RECOVERY') setTimeout(openPasswordDialog, 0);
-        }
-        else { cloudUser = null; render(); }
-      });
     } catch (error) { console.warn('Nube no disponible',error); }
   }
   render();
