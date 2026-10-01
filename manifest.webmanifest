@@ -1,0 +1,11 @@
+{
+  "name": "K_STREAM+ · Gestión de clientes",
+  "short_name": "K_STREAM+",
+  "description": "Clientes, renovaciones, ventas y gastos",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f5f1",
+  "theme_color": "#f6f5f1",
+  "lang": "es",
+  "icons": []
+}
