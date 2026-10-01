@@ -27,3 +27,8 @@
   .stats-grid{grid-template-columns:1fr}
   .main{padding-inline:12px}
 }
+
+
+/* Keep account emails readable in narrow renewal rows. */
+.due-person .due-email{color:#554bbb;font-size:12px;font-weight:600;line-height:1.35;white-space:normal;overflow-wrap:anywhere;overflow:visible;text-overflow:clip;margin-top:3px}
+.due-person .due-status{font-size:10px;line-height:1.35;margin-top:3px;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
