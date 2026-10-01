@@ -8,7 +8,7 @@ const dateToday = () => { const d = new Date(); return `${d.getFullYear()}-${Str
 const fmtMoney = value => new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(Number(value)||0);
 const fmtDate = value => value ? new Intl.DateTimeFormat('es-CO',{day:'numeric',month:'short',year:'numeric'}).format(new Date(`${value}T12:00:00`)) : '—';
 const id = () => crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-let data, page = 'Inicio', query = '', cloudClient = null, cloudUser = null, syncTimer;
+let data, page = 'Inicio', query = '', reportDate = dateToday(), cloudClient = null, cloudUser = null, syncTimer;
 
 async function boot(){
   try { data = JSON.parse(localStorage.getItem(STORE)); } catch {}
@@ -109,3 +109,26 @@ async function importBackup(e){const file=e.target.files[0];if(!file)return;try{
 document.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b&&b.closest('.content')){page=b.dataset.page;query='';render();}});
 document.addEventListener('click',e=>{if(e.target.id==='save-settings'){data.settings.renewalWindowDays=Number($('#window-days').value||3);data.settings.businessName=$('#biz-name').value.trim()||'K_STREAM+';save();toast('Reglas guardadas');}});
 boot();
+
+
+function dailyReportMetrics(day){
+  const dayCustomers=data.customers.filter(c=>c.saleDate===day);
+  const salesTotal=dayCustomers.reduce((sum,c)=>sum+Number(c.price||0),0);
+  const serviceCosts=dayCustomers.reduce((sum,c)=>sum+Number(c.cost||0),0);
+  const otherExpenses=data.expenses.filter(e=>e.date===day).reduce((sum,e)=>sum+Number(e.amount||0),0);
+  const totalExpenses=serviceCosts+otherExpenses;
+  const net=salesTotal-totalExpenses;
+  return `<article class="daily-metric"><span>Ventas del día</span><b>${fmtMoney(salesTotal)}</b><small>${dayCustomers.length} servicios vendidos</small></article><article class="daily-metric"><span>Gastos del día</span><b>${fmtMoney(totalExpenses)}</b><small>Costos de servicios: ${fmtMoney(serviceCosts)} · Otros gastos: ${fmtMoney(otherExpenses)}</small></article><article class="daily-metric"><span>Ganancia neta</span><b>${fmtMoney(net)}</b><small>Ventas menos costos y otros gastos</small></article>`;
+}
+const renderPageOriginal=renderPage;
+renderPage=(m)=>{
+  const pageContent=renderPageOriginal(m);
+  if(page!=='Ganancias')return pageContent;
+  return `<section class="panel daily-report-panel"><div class="panel-heading"><div><h2>Consulta por día</h2><p>Elige una fecha para ver sus ventas y resultado.</p></div></div><label class="form-label daily-report-date">Fecha del reporte<input id="daily-report-date" type="date" aria-label="Fecha del reporte diario" value="${esc(reportDate)}"></label><div class="daily-metrics">${dailyReportMetrics(reportDate)}</div></section>${pageContent}`;
+};
+document.addEventListener('change',event=>{
+  if(event.target?.id!=='daily-report-date')return;
+  reportDate=event.target.value||dateToday();
+  const metrics=event.target.closest('.daily-report-panel')?.querySelector('.daily-metrics');
+  if(metrics)metrics.innerHTML=dailyReportMetrics(reportDate);
+});
