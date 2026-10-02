@@ -47,3 +47,16 @@
   .daily-metrics{grid-template-columns:minmax(0,1fr)}
   .daily-metric{padding:13px}
 }
+
+
+/* Optional sale details and separate WhatsApp action. */
+.sale-optional-note{margin-top:-7px}
+.sale-actions .button{min-height:44px}
+.form-dialog{overflow-y:auto;overscroll-behavior:contain}
+@media(max-width:760px){
+  .sale-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+  .sale-actions #cancel-modal{grid-column:1;grid-row:1}
+  .sale-actions [name="saveAction"][value="save"]{grid-column:2;grid-row:1}
+  .sale-actions #submit-whatsapp{grid-column:1/-1;grid-row:2}
+  .sale-actions .button{width:100%;font-size:13px}
+}
