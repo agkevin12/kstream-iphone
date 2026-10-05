@@ -60,3 +60,26 @@
   .sale-actions #submit-whatsapp{grid-column:1/-1;grid-row:2}
   .sale-actions .button{width:100%;font-size:13px}
 }
+
+/* Account details remain visible without horizontal scrolling on iPhone. */
+.customer-cell>span:last-child{min-width:0}
+.customer-cell .account-email{white-space:normal;overflow-wrap:anywhere;color:var(--purple);line-height:1.4}
+.customer-cell .remaining-days{white-space:normal;font-weight:600;color:var(--ink);line-height:1.4}
+.due-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.due-actions .button,.due-actions .whatsapp-button{min-height:44px;text-align:center}
+.daily-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:760px){
+ .daily-metrics{grid-template-columns:minmax(0,1fr)}
+ .clients-table table,.clients-table tbody{display:block;min-width:0;width:100%}
+ .clients-table thead{display:none}
+ .clients-table tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:14px 0;border-bottom:1px solid var(--line)}
+ .clients-table td{display:block;min-width:0;white-space:normal;overflow-wrap:anywhere;border:0;padding:6px 8px}
+ .clients-table td:first-child{grid-column:1/-1}
+ .clients-table td:nth-child(3)::before{content:'Venta: ';color:var(--muted)}
+ .clients-table td:nth-child(4)::before{content:'Vence: ';color:var(--muted)}
+ .clients-table td:nth-child(6)::before{content:'Ganancia: ';color:var(--muted)}
+ .clients-table .row-actions{grid-column:1/-1;text-align:right}
+ .clients-table .row-actions button{min-width:44px;min-height:44px}
+ .clients-table .customer-cell{align-items:flex-start}
+ .clients-table .customer-cell small{font-size:12px}
+}
