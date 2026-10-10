@@ -83,3 +83,5 @@
  .clients-table .customer-cell{align-items:flex-start}
  .clients-table .customer-cell small{font-size:12px}
 }
+.account-details{overflow-wrap:anywhere;white-space:normal;line-height:1.6}
+.renew-month{margin-top:12px;min-height:44px}
