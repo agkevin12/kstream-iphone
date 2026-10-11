@@ -85,3 +85,43 @@
 }
 .account-details{overflow-wrap:anywhere;white-space:normal;line-height:1.6}
 .renew-month{margin-top:12px;min-height:44px}
+
+/* K_STREAM+ Classic Navy / Ivory / Gold — visual-only theme, 2026-10-10. */
+:root{--paper:#fffefa;--ink:#10253d;--muted:#687584;--line:#e8e5dd;--purple:#b58b43;--purple-soft:#f8f0df;--blue:#153c62;--blue-soft:#eaf1f7;--amber:#b58b43;--amber-soft:#fbf2df;--radius:17px;--shadow:0 7px 25px rgba(8,29,51,.065);background:#f8f6f0;color:var(--ink)}
+body{background:#f8f6f0;color:var(--ink)}
+.sidebar{background:#071f35;border-color:#16354c;color:#fdf8e9}
+.brand{color:#f9f0d9;letter-spacing:.03em}.brand small{color:#c8b58d}.brand-mark{background:linear-gradient(145deg,#caa35e,#a57a32);color:#092239;box-shadow:none}
+.nav-item{color:#bdcad4}.nav-item:hover{background:#173b56}.nav-item.selected{background:#183c56;color:#e8c47e}.nav-item i{color:#12344e;background:#f4dfb5}
+.privacy-note,.account-chip,.account-chip small{color:#c4cdd5}.account-chip{border-color:#274459}.more{color:#e1c58e}
+.topbar h1,.panel-heading h2{color:#0c2742;letter-spacing:-.025em}.eyebrow{color:#a17b3b}
+.stat-card,.panel{border-color:#eae5d9;background:#fffefa;box-shadow:var(--shadow)}
+.stat-card>b,.balance-value{color:#0b2947}.stat-symbol.lilac,.lilac,.balance-icon{background:#f7edda;color:#aa803c}
+.primary{background:linear-gradient(135deg,#092a49,#153e65);color:#fff;box-shadow:0 4px 12px #0b2b4922}.primary:hover{background:#194d77}
+.secondary{background:#fffdfa;border-color:#dcd4c5;color:#17344e}.secondary:hover{background:#faf2e2;border-color:#c7a365}
+.text-button,.local-banner button{color:#9c7336}.search{background:#fbfaf7;border-color:#e5e1d9}.search input{color:#18344e}
+.avatar,.mini-avatar,.person-mark{background:#092a47;color:#eacb8e}.balance-panel,.daily-metric{background:#fcf8ef}.balance-icon{color:#a67b35}
+.bar.sales,.legend-sales{background:#173f69}.bar.profit,.legend-profit{background:#c69d58}
+.status.active{background:#e8f4ec;color:#2a7956}.status.soon{background:#fff1d8;color:#98671f}.status.expired{background:#fff0ec;color:#a9433f}
+.money,.customer-cell b,.due-person b{color:#102e4b}.customer-cell .account-email,.due-person .due-email{color:#1c5680}
+.button,.stat-card,.panel,.search,.nav-item{transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease}
+input,textarea,select{max-width:100%}td,.panel,.stat-card{overflow-wrap:anywhere}
+@media(max-width:760px){
+ html,body{width:100%;max-width:100%;overflow-x:hidden}
+ .main{padding-bottom:calc(95px + env(safe-area-inset-bottom));max-width:100%}
+ .mobile-nav{background:#071f35f5;border-top:1px solid #2c4659;box-shadow:0 -4px 20px #051a2b20}
+ .mobile-nav button{color:#c1cbd2}.mobile-nav button.selected{color:#eac47e}.mobile-nav i{background:#bd914b;color:#091e32}
+ .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stat-card{min-width:0;padding:15px 12px;min-height:115px}
+ .stat-card>b{font-size:clamp(16px,4.5vw,22px);overflow-wrap:anywhere}
+ .stat-card>span{padding-right:20px;line-height:1.4}
+ .panel{min-width:0;overflow:hidden}
+ .table-wrap{width:100%;max-width:100%;overflow-x:auto}
+ .clients-table tr{background:#fffefa;border:1px solid #ebe4d7;border-radius:13px;padding:12px 7px;margin-bottom:10px;box-shadow:0 2px 8px #08243b0a}
+ .clients-table td{font-size:12px;line-height:1.45}
+ .clients-table .row-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:4px}
+ .due-row{align-items:flex-start}.due-person{min-width:0;overflow-wrap:anywhere}
+ .topbar{gap:8px}.top-actions{gap:8px;min-width:0}
+ .button{white-space:normal;text-align:center;line-height:1.3}
+ .daily-metric{background:#fbf7ed;border-color:#e8dfcf}
+}
+@media(max-width:380px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stat-card{padding:12px 9px}.stat-card>b{font-size:16px}.stat-symbol{width:21px;height:21px;right:7px;top:8px}}
